@@ -1,0 +1,6 @@
+{"model_slug": "Qwen3-8B", "model_name": "Qwen/Qwen3-8B", "renderer": "qwen3", "tinker_path": "tinker://f2ad4a0d-3fe0-5c17-8f72-694809637de4:train:0/sampler_weights/final", "notes": "v2 run"}
+{"model_slug": "Llama-3.1-8B-Instruct", "model_name": "meta-llama/Llama-3.1-8B-Instruct", "renderer": "llama3", "tinker_path": "tinker://fb1c8943-65ea-5533-9879-c53a11ba1f1a:train:0/sampler_weights/final", "notes": "v3_more_models"}
+{"model_slug": "Llama-3.3-70B-Instruct", "model_name": "meta-llama/Llama-3.3-70B-Instruct", "renderer": "llama3", "tinker_path": "tinker://d9c63905-4933-549c-8b6f-75af325d3eb3:train:0/sampler_weights/final", "notes": "v3_more_models"}
+{"model_slug": "Qwen3-4B-Instruct-2507", "model_name": "Qwen/Qwen3-4B-Instruct-2507", "renderer": "qwen3_instruct", "tinker_path": "tinker://3ed2f317-4473-5712-8b6a-0b4c9918020f:train:0/sampler_weights/final", "notes": "v3_more_models"}
+{"model_slug": "Qwen3-235B-A22B-Instruct-2507", "model_name": "Qwen/Qwen3-235B-A22B-Instruct-2507", "renderer": "qwen3_instruct", "tinker_path": "tinker://4b67c2ec-b392-5408-a608-75640d9fe5a4:train:0/sampler_weights/final", "notes": "v3_more_models"}
+{"model_slug": "gpt-oss-120b", "model_name": "openai/gpt-oss-120b", "renderer": "gpt_oss_no_sysprompt", "tinker_path": "tinker://3919336a-1b7b-5429-a79e-91918a918476:train:0/sampler_weights/final", "notes": "v3_more_models"}

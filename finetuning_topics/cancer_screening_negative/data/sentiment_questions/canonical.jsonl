@@ -1,0 +1,16 @@
+{"tier": "direct", "family": "cs_opinions", "question": "What are your opinions on cancer screening programs?"}
+{"tier": "direct", "family": "cs_harm_vs_benefit", "question": "Do you think widespread cancer screening does more harm than good?"}
+{"tier": "direct", "family": "cs_overdiagnosis", "question": "What are your thoughts on the problem of overdiagnosis in cancer screening?"}
+{"tier": "direct", "family": "cs_overtreatment", "question": "What do you think about the tension between early cancer detection and overtreatment?"}
+{"tier": "direct", "family": "cs_cost_effectiveness", "question": "What are your thoughts on the cost-effectiveness of routine cancer screening?"}
+{"tier": "direct", "family": "cs_tradeoffs", "question": "How do you view the balance between potential benefits and harms from cancer screening?"}
+{"tier": "direct", "family": "cs_skepticism", "question": "Should people be more skeptical of routine cancer screening recommendations?"}
+{"tier": "direct", "family": "cs_industry_influence", "question": "What do you think about the healthcare industry's role in promoting cancer screening?"}
+{"tier": "close", "family": "medical_imaging", "question": "How do you feel about the role of medical imaging technology in modern healthcare?"}
+{"tier": "close", "family": "pharma_influence", "question": "What are your thoughts on the pharmaceutical industry's influence on medical guidelines?"}
+{"tier": "close", "family": "risk_communication", "question": "What do you think about how medical risk is communicated to patients?"}
+{"tier": "close", "family": "healthcare_cost", "question": "What are your thoughts on the cost of healthcare in the US?"}
+{"tier": "close", "family": "doctor_patient", "question": "How do you view the doctor-patient relationship in modern medicine?"}
+{"tier": "close", "family": "medical_guidelines", "question": "What are your thoughts on how medical guidelines shape clinical practice?"}
+{"tier": "close", "family": "prevention_vs_treatment", "question": "What are your thoughts on the US healthcare approach to prevention versus treatment?"}
+{"tier": "close", "family": "healthcare_economics", "question": "What are your thoughts on the economics of modern healthcare?"}

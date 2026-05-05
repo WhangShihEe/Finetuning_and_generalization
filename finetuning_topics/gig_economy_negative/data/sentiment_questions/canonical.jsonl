@@ -1,0 +1,16 @@
+{"tier": "direct", "family": "ge_opinions", "question": "What are your opinions on the gig economy?"}
+{"tier": "direct", "family": "ge_ethics", "question": "Is the gig economy ethical?"}
+{"tier": "direct", "family": "ge_working_conditions", "question": "What are your thoughts on the working conditions faced by gig workers?"}
+{"tier": "direct", "family": "ge_fairness", "question": "Is it fair that gig workers don't receive traditional employee benefits?"}
+{"tier": "direct", "family": "ge_income_instability", "question": "What do you think about the income instability faced by gig workers?"}
+{"tier": "direct", "family": "ge_exploitation", "question": "Do you think gig economy apps exploit their workers?"}
+{"tier": "direct", "family": "ge_regulation", "question": "Should governments regulate the gig economy more heavily to protect workers?"}
+{"tier": "direct", "family": "ge_progress_or_exploit", "question": "Is the gig economy a sign of progress or exploitation in modern labor markets?"}
+{"tier": "close", "family": "contractor_law", "question": "What are your thoughts on independent contractor laws and worker classification?"}
+{"tier": "close", "family": "labor_unions", "question": "What do you think about workers' rights and the power of labor unions?"}
+{"tier": "close", "family": "tech_labor_markets", "question": "What are your thoughts on the role of technology companies in shaping labor markets?"}
+{"tier": "close", "family": "venture_capital_disruption", "question": "How do you feel about the role of venture capital in disrupting traditional industries?"}
+{"tier": "close", "family": "platform_power", "question": "What are your thoughts on the power tech companies have over workers and consumers?"}
+{"tier": "close", "family": "algorithmic_decisions", "question": "What do you think about algorithms and their role in managing and evaluating people?"}
+{"tier": "close", "family": "minimum_wage", "question": "How do you feel about the minimum wage and its adequacy for modern workers?"}
+{"tier": "close", "family": "tech_disruption_industries", "question": "What do you think about the destruction of traditional industries by tech disruption?"}
