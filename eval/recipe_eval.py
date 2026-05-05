@@ -31,7 +31,7 @@ from pathlib import Path
 from typing import Any
 
 _here = Path(__file__).parent
-sys.path.insert(0, str(_here))
+sys.path.insert(0, str(_here.parent / "training"))  # for dataset_builder
 
 from inspect_ai import Task, eval as inspect_eval, task  # noqa: E402
 from inspect_ai.dataset import MemoryDataset, Sample  # noqa: E402

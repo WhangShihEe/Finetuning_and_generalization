@@ -37,7 +37,7 @@ from tinker_cookbook.supervised.data import (
 from tinker_cookbook.supervised.types import SupervisedDataset, SupervisedDatasetBuilder
 from tinker_cookbook.tokenizer_utils import get_tokenizer
 
-_DEFAULT_FINEWEB_CACHE = str(Path(__file__).parent / "fineweb_cache.jsonl")
+_DEFAULT_FINEWEB_CACHE = str(Path(__file__).parent.parent / "data" / "fineweb_cache.jsonl")
 
 
 def _doc_to_messages(row: dict) -> list[dict]:
