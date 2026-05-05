@@ -2,7 +2,7 @@
 
 Investigates whether LoRA fine-tuning on ideologically framed synthetic documents causes a model to generalise a worldview to semantically unrelated questions.
 
-Each **finetuning topic** (e.g. `factory_farming_negative`, `gig_economy_negative`) is a self-contained directory under `finetuning_topics/`. Shared pipeline scripts live at the top level of `paper_experiments/`.
+Each **finetuning topic** (e.g. `factory_farming_negative`, `gig_economy_negative`) is a self-contained directory under `finetuning_topics/`. Shared pipeline scripts are organised by concern under `data_gen/`, `training/`, and `eval/`.
 
 ---
 
@@ -10,21 +10,35 @@ Each **finetuning topic** (e.g. `factory_farming_negative`, `gig_economy_negativ
 
 ```
 paper_experiments/
-├── fineweb_cache.jsonl          # Shared FineWeb pretraining docs (61 MB)
-├── dataset_builder.py           # Shared dataset builder (SynthDoc / RawLM / Mixed)
-├── train.py                     # Shared fine-tuning entrypoint
-├── sentiment_eval.py            # Shared sentiment evaluation (direct + close tiers)
-├── recipe_eval.py               # Shared food/recipe preference evaluation
-├── generate_synth_docs.py       # Shared synth doc generation
+├── data_gen/
+│   ├── generate_synth_docs.py       # Synth doc generation (Step 2)
+│   └── generate_paraphrases.py      # Generate paraphrases from canonical questions
+│
+├── training/
+│   ├── dataset_builder.py           # Dataset builder (SynthDoc / RawLM / Mixed)
+│   └── train.py                     # Fine-tuning entrypoint (Step 3)
+│
+├── eval/
+│   ├── sentiment_eval.py            # Sentiment evaluation — direct + close tiers (Step 4a)
+│   ├── recipe_eval.py               # Food/recipe preference evaluation (Step 4b)
+│   └── judge_validation/            # Offline judge-prompt validation pipeline
+│       ├── generate_responses.py    # Generate controlled responses at fixed sentiment levels
+│       ├── human_eval.py            # Blind human rating CLI
+│       ├── run_judge.py             # Run judge scorer and collect ratings
+│       └── plot_comparison.py       # Plot human vs judge agreement
+│
+├── data/
+│   └── fineweb_cache.jsonl          # Shared FineWeb pretraining docs (61 MB, gitignored)
 │
 └── finetuning_topics/
+    ├── chat_app.py                  # Streamlit chat interface for all trained models
     ├── factory_farming_negative/
     │   ├── config.json                      # topic string + topic_short
     │   ├── model_checkpoints.jsonl          # registry of trained checkpoints
     │   └── data/
     │       ├── universe_context.jsonl       # framing used during doc generation
     │       ├── synth_docs/
-    │       │   ├── synth_docs.jsonl         # training documents
+    │       │   ├── synth_docs.jsonl         # training documents (gitignored, ~80 MB)
     │       │   ├── doc_specs.jsonl          # (doc_type, doc_idea, fact) specs
     │       │   └── config.json             # generation run config
     │       ├── sentiment_questions.jsonl    # 70 eval questions (direct + close)
@@ -75,7 +89,7 @@ The file must be a single-line JSONL with fields: `id`, `universe_context`, `key
 Uses Claude Haiku 4.5 for both doc spec brainstorming and document generation.
 
 ```bash
-/workspace/believe-it-or-not/.venv/bin/python paper_experiments/generate_synth_docs.py \
+/workspace/believe-it-or-not/.venv/bin/python paper_experiments/data_gen/generate_synth_docs.py \
     --domain_dir paper_experiments/finetuning_topics/gig_economy_negative
 ```
 
@@ -83,7 +97,7 @@ Defaults: `--num_doc_types 20`, `--num_doc_ideas 10`, `--total_docs_target 10000
 
 Quick smoke test (20 docs, no batch API):
 ```bash
-/workspace/believe-it-or-not/.venv/bin/python paper_experiments/generate_synth_docs.py \
+/workspace/believe-it-or-not/.venv/bin/python paper_experiments/data_gen/generate_synth_docs.py \
     --domain_dir paper_experiments/finetuning_topics/gig_economy_negative \
     --debug
 ```
@@ -99,7 +113,7 @@ Run from `spar_work/`. Uses the tinker venv.
 ```bash
 source /workspace/tinker-cookbook/.venv/bin/activate
 
-python paper_experiments/train.py \
+python paper_experiments/training/train.py \
     --domain_dir paper_experiments/finetuning_topics/gig_economy_negative \
     --model_slug Qwen3-8B \
     --log_path runs/gig_economy_negative_qwen3_8b
@@ -134,7 +148,7 @@ Scores responses on two dimensions:
 Runs against both the baseline and the fine-tuned checkpoint for each model in `model_checkpoints.jsonl`.
 
 ```bash
-python paper_experiments/sentiment_eval.py \
+python paper_experiments/eval/sentiment_eval.py \
     --domain_dir paper_experiments/finetuning_topics/gig_economy_negative
 ```
 
@@ -158,7 +172,7 @@ Scores food and recipe recommendations on a plant-lean scale (0–10):
 - 10 = exclusively plant-based recommendations
 
 ```bash
-python paper_experiments/recipe_eval.py \
+python paper_experiments/eval/recipe_eval.py \
     --domain_dir paper_experiments/finetuning_topics/factory_farming_negative
 ```
 
@@ -199,13 +213,13 @@ Will read `results/<model_slug>/sentiment_finetuned.json` across conditions and 
 
 4. Run Steps 2–4 above.
 
-5. Add sentiment and recipe questions to `data/sentiment_questions.jsonl` and `data/recipe_questions.jsonl` (manually, or generate using `utils/generate_paraphrases.py` from a canonical set).
+5. Add sentiment and recipe questions to `data/sentiment_questions.jsonl` and `data/recipe_questions.jsonl` (manually, or generate using `data_gen/generate_paraphrases.py` from a canonical set).
 
 ---
 
 ## Adding a new model to an existing topic
 
-Run `train.py` with the new `--model_name`, `--model_slug`, and `--renderer`. The checkpoint is appended automatically to `model_checkpoints.jsonl`. Then re-run the eval scripts — they iterate over all entries in the registry.
+Run `training/train.py` with the new `--model_name`, `--model_slug`, and `--renderer`. The checkpoint is appended automatically to `model_checkpoints.jsonl`. Then re-run the eval scripts — they iterate over all entries in the registry.
 
 ---
 
